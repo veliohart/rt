@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "GRM",
+    "replacement": {
+      "distance": 200000,
+      "date": "11-04-2000"
+    },
+    "reviewed": {
+      "distance": 215987,
+      "date": "20-08-2005"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Fuel filter",
+    "replacement": {
+      "distance": 201000,
+      "date": "11-04-2000"
+    },
+    "reviewed": {
+      "distance": 215987,
+      "date": "20-08-2005"
+    }
+  }
+]
