@@ -16,9 +16,10 @@ class Garage extends React.Component {
     this.setState({now: 212598});
   }
 
-  inc() {
-    this.setState({now: this.state.now += 1000});
-    console.log(this.state.now);
+  inc(elem) {
+    // this.setState({now: this.state.now += 1000});
+    // console.log(this.state.now);
+    console.log('elem', elem.ping());
   }
   dec() {
     this.setState({now: this.state.now -= 1000});
@@ -30,7 +31,7 @@ class Garage extends React.Component {
 			<div className="row">
 				<div className="col-sm-4">
           <Panel header="wear and tear">
-            <WearFactor label="GRM" from={200000} now={this.state.now} range={60000}/>
+            <WearFactor ref={this.inc} label="GRM" from={200000} now={this.state.now} range={60000}/>
             <WearFactor label="Fuel filter:" from={210589} now={this.state.now} range={10000}/>
           </Panel>
         </div>

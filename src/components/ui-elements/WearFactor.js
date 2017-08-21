@@ -29,9 +29,13 @@ class WearFactor extends React.Component {
     return "danger"
   }
 
+  ping () {
+    console.log('I am here!');
+  }
+
   render () {
     return (
-      <div>
+      <div ref={this.props.getRef}>
         <div className="progress-label">{`${this.props.label} (${this.wearAndTear()} km)`}</div>
         <ProgressBar striped={this.props.striped} bsStyle={this.style(this.now())} now={this.now()} />
       </div>
