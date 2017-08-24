@@ -4,6 +4,8 @@
     "label": "Диворожець",
     "brand": "daewoo",
     "model": "sens",
-    "year": 2003
+    "year": 2003,
+    "distance": 200000,
+    "notifications": []
   }
 ]

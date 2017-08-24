@@ -39,7 +39,8 @@ class Garage extends React.PureComponent {
       return (
         <div key={`$.${index}`} className="col-sm-4">
           <Panel header={this.getPanelHeader(car)}>
-            {`${capitalize(car.brand)} ${capitalize(car.model)} (${car.year})`}
+            <p>{`car: ${capitalize(car.brand)} ${capitalize(car.model)} (${car.year})`}</p>
+            <p>{`distance: ${car.distance} km`}</p>
           </Panel>
         </div>
       )
