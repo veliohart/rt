@@ -5,7 +5,7 @@ const SUCCESSFUL = 200;
 const API = `${config.api.host}api`;
 
 const getOptions = () => ({
-  API
+  API: ''
 });
 
 const api = {
@@ -15,7 +15,7 @@ const api = {
     body,
     options = getOptions()
   ) {
-    fetch(`${options.API}/${url}`, {
+    return fetch(`${options.API}/${url}`, {
       method,
       headers: {
         Accept: 'application/json',

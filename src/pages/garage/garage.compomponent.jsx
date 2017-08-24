@@ -1,53 +1,70 @@
 import React from 'react';
 import autobind from 'autobindr';
+import { connect } from 'react-redux';
+import { UIView, UISref } from '@uirouter/react';
 import { Panel } from 'react-bootstrap';
 
-import { WearFactor } from "../../components/ui-elements/WearFactor";
+import { capitalize } from "../../services/utils";
 
-class Garage extends React.Component {
+import { fetchCarsData } from "../../services/garage/garage.actions";
+
+class Garage extends React.PureComponent {
   constructor () {
     super();
 
     autobind(this);
-    // this.state = {};
   }
 
   componentWillMount () {
-    this.setState({now: 212598});
+    this.props.fetchCarsData();
   }
 
-  inc(elem) {
-    // this.setState({now: this.state.now += 1000});
-    // console.log(this.state.now);
-    console.log('elem', elem.ping());
-  }
-  dec() {
-    this.setState({now: this.state.now -= 1000});
-    console.log(this.state.now);
+  componentWillReceiveProps (nextProps) {
+    const { cars } = this.props;
+    if (cars !== nextProps.cars) {}
   }
 
-	render () {
-		return (
-			<div className="row">
-				<div className="col-sm-4">
-          <Panel header="wear and tear">
-            <WearFactor ref={this.inc} label="GRM" from={200000} now={this.state.now} range={60000}/>
-            <WearFactor label="Fuel filter:" from={210589} now={this.state.now} range={10000}/>
+  getPanelHeader (car) {
+    return (
+      <UISref to="car" params={{"id": car.id}}>
+        <a href="">{car.label}</a>
+      </UISref>
+    );
+  }
+
+  getCars () {
+    const {cars} = this.props;
+    console.log(cars);
+    return cars.map((car, index) => {
+      return (
+        <div key={`$.${index}`} className="col-sm-4">
+          <Panel header={this.getPanelHeader(car)}>
+            {`${capitalize(car.brand)} ${capitalize(car.model)} (${car.year})`}
           </Panel>
         </div>
-				<div className="col-sm-4">
-					<div className="well well-sm">
-						well
-					</div>
-				</div>
-				<div className="col-sm-4">
-					<div className="well well-sm">
-						well
-					</div>
-				</div>
-			</div>
-		)
-	}
+      )
+    })
+  }
+
+  render () {
+    return (
+      <UIView>
+        <div className="row">
+          {this.getCars()}
+        </div>
+      </UIView>
+    )
+  }
 };
 
-export default Garage;
+const mapStateToProps = (state, ownProps) => ({
+  cars: state.cars.data
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchCarsData () {
+    return dispatch(fetchCarsData());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Garage);

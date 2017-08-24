@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux';
-
-const test = (state = {}, action) => {
-	return state;
-};
+import cars from '../garage/garage.reducer';
 
 export const reducer = combineReducers({
-	test
+  cars
 });
