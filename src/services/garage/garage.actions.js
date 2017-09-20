@@ -4,7 +4,7 @@ export const CARS_DATA_REQUEST = 'CARS_DATA_REQUEST';
 export const CARS_DATA_SUCCESS = 'CARS_DATA_SUCCESS';
 export const CARS_DATA_ERROR = 'CARS_DATA_ERROR';
 
-const carsDataRequest = () => ({
+export const carsDataRequest = () => ({
   type: CARS_DATA_REQUEST
 });
 const carsDataSuccess = (data) => ({

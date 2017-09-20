@@ -6,7 +6,7 @@ import { Panel } from 'react-bootstrap';
 
 import { capitalize } from "../../services/utils";
 
-import { fetchCarsData } from "../../services/garage/garage.actions";
+import { fetchCarsData, carsDataRequest } from "../../services/garage/garage.actions";
 
 class Garage extends React.PureComponent {
   constructor () {
@@ -16,7 +16,7 @@ class Garage extends React.PureComponent {
   }
 
   componentWillMount () {
-    this.props.fetchCarsData();
+    this.props.getCarsData();
   }
 
   componentWillReceiveProps (nextProps) {
@@ -34,7 +34,6 @@ class Garage extends React.PureComponent {
 
   getCars () {
     const {cars} = this.props;
-    console.log(cars);
     return cars.map((car, index) => {
       return (
         <div key={`$.${index}`} className="col-sm-4">
@@ -65,6 +64,9 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   fetchCarsData () {
     return dispatch(fetchCarsData());
+  },
+  getCarsData() {
+    return dispatch(carsDataRequest());
   }
 });
 
